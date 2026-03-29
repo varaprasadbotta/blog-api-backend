@@ -4,19 +4,19 @@
   "description": "this is second project , i am going to learn something new today.",
   "main": "index.js",
   "scripts": {
-  "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
-  "build": "tsc",
-  "start": "node dist/server.js",
-  "lint": "eslint . --ext .ts"
-},
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "lint": "eslint . --ext .ts"
+  },
   "keywords": [
     "backend"
   ],
   "author": "prasad Botta",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "cors": "^2.8.6",
-    "dcryptjs": "^1.0.5",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
     "helmet": "^8.1.0",
