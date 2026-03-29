@@ -4,6 +4,8 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 
 import authRoutes from './routes/auth.routes';
+import postRoutes from './routes/post.routes';
+import commentRoutes from './routes/comment.routes';
 
 const app = express();
 
@@ -29,6 +31,12 @@ app.get('/', (req, res) => {
 
 // Routes
 app.use('/api/auth', authRoutes);
+
+// Routes post
+app.use('/api/posts', postRoutes);
+
+// Routes Comments
+app.use('/api/comments', commentRoutes);
 
 // Global fallback route
 app.use((req, res) => {

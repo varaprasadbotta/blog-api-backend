@@ -38,10 +38,7 @@ const userSchema: Schema<Iuser> = new Schema(
     password: {
       type: String,
       required: true,
-      trim: true,
       select: false,
-      minLength: 3,
-      maxLength: 25,
     },
     role: {
       type: String,
@@ -66,8 +63,8 @@ const userSchema: Schema<Iuser> = new Schema(
   },
 );
 
-userSchema.pre<Iuser>('save', async function () {
-  if (this.isModified('password')) return;
+userSchema.pre<Iuser>('save', async function (next) {
+  if (!this.isModified('password')) return next();
 
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);

@@ -6,6 +6,7 @@ export const registerUser = async (
   name: string,
   email: string,
   password: string,
+  role: string,
 ) => {
   const existingUser = await User.findOne({ email });
 
@@ -17,7 +18,7 @@ export const registerUser = async (
     name,
     email,
     password,
-    role: Roles.USER,
+    role,
   });
 
   const accessToken = generateAccessToken({
@@ -30,7 +31,10 @@ export const registerUser = async (
   });
 
   user.refreshToken = refreshToken;
-  await user.save();
+
+  await User.findByIdAndUpdate(user._id, { refreshToken });
+
+  //await user.save();
 
   return { user, accessToken, refreshToken };
 };
@@ -58,7 +62,8 @@ export const loginUser = async (email: string, password: string) => {
   });
 
   user.refreshToken = refreshToken;
-  await user.save();
+  //await user.save();
+  await User.findByIdAndUpdate(user._id, { refreshToken });
 
   return { user, accessToken, refreshToken };
 };
